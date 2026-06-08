@@ -1,0 +1,23 @@
+# Emotion Eye Backend - Minimal Requirements
+# For chat API only (no emotion detection from images)
+# Use this if you don't have a C compiler installed
+
+# Web Framework
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+
+# HTTP Client
+httpx>=0.25.0
+
+# Gemini (official Python SDK)
+google-genai
+
+# Environment Variables
+python-dotenv>=1.0.0
+
+# Data Validation
+pydantic>=2.5.0
+
+# Optional: Email support
+aiosmtplib>=3.0.0

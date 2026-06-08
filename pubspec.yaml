@@ -1,0 +1,71 @@
+name: emotioneye
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.3
+
+dependencies:
+  flutter:
+    sdk: flutter
+  url_launcher: ^6.2.5
+  confetti: ^0.7.0
+  camera: ^0.10.6
+  image: ^4.2.0
+  lottie: ^3.1.2
+  emailjs: ^4.0.0
+  image_picker: ^1.1.2
+  http: ^1.2.2
+  cupertino_icons: ^1.0.6
+  path_provider: ^2.1.2
+  share_plus: ^7.0.0
+  shared_preferences: ^2.2.2
+  intl: 0.20.2
+  awesome_notifications: ^0.10.1
+ 
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+#  hive_generator: ^2.0.1
+#  build_runner: ^2.4.7
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/animation.json
+    - assets/portrait.png
+
+    - assets/exercises/happy/setu_bandhasana.png
+    - assets/exercises/happy/suryanamaskar.png
+    - assets/exercises/happy/ustrasana.png
+    - assets/exercises/happy/virabhadrasana.png
+    - assets/exercises/happy/vrikshasana.png
+
+    - assets/exercises/angry/balasana.png
+    - assets/exercises/angry/marjaryasana_bitilasana.png
+    - assets/exercises/angry/nadi_shodhana.png
+    - assets/exercises/angry/uttanasana.png
+    - assets/exercises/angry/viparita_karani.png
+
+    - assets/exercises/sad/matsyasana.png
+    - assets/exercises/sad/paschimottanasana.png
+    - assets/exercises/sad/supta_baddha_konasana.png
+    - assets/exercises/sad/ustrasana.png
+    - assets/exercises/sad/viparita_karani.png
+
+    - assets/exercises/neutral/ardha_chandrasana.png
+    - assets/exercises/neutral/marjaryasana_bitilasana.png
+    - assets/exercises/neutral/meditation.png
+    - assets/exercises/neutral/sukhasana.png
+    - assets/exercises/neutral/tadasana.png
+
+    - assets/exercises/anxious/balasana.png
+    - assets/exercises/anxious/breathing.png
+    - assets/exercises/anxious/paschimottanasana.png
+    - assets/exercises/anxious/utthita_trikonasana.png
+    - assets/exercises/anxious/viparita_karani.png
+
