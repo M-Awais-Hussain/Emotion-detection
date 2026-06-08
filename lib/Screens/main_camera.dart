@@ -155,10 +155,10 @@ class _MainCameraState extends State<MainCamera> with WidgetsBindingObserver {
     _emotionService.stopDetection();
     
     if (_isCameraInitialized) {
-      await _cameraService.dispose();
       setState(() {
         _isCameraInitialized = false;
       });
+      await _cameraService.dispose();
       debugPrint("[MainCamera] Camera disposed and _isCameraInitialized set to false.");
     }
   }

@@ -56,7 +56,7 @@ class EmotionApiService {
         request.files.add(await http.MultipartFile.fromPath('image', image.path));
       }
 
-      final response = await request.send();
+      final response = await request.send().timeout(const Duration(seconds: 3));
       final resBody = await response.stream.bytesToString();
       debugPrint("_______________ Status: ${response.statusCode}");
       debugPrint("_______________ Response: $resBody");
@@ -100,7 +100,7 @@ class EmotionApiService {
           fallbackRequest.files.add(await http.MultipartFile.fromPath('image', image.path));
         }
         
-        final fallbackResponse = await fallbackRequest.send();
+        final fallbackResponse = await fallbackRequest.send().timeout(const Duration(seconds: 5));
         final fallbackBody = await fallbackResponse.stream.bytesToString();
         
         if (fallbackResponse.statusCode == 200) {
