@@ -9,8 +9,9 @@ import '../model/photo_data.dart';
 
 class ResultPage extends StatefulWidget {
   final XFile imageFile;
+  final int cameraIndex;
 
-  const ResultPage({super.key, required this.imageFile});
+  const ResultPage({super.key, required this.imageFile, this.cameraIndex = 0});
 
   @override
   State<ResultPage> createState() => _ResultPageState();
@@ -288,7 +289,7 @@ class _ResultPageState extends State<ResultPage> {
                                   Navigator.pop(context);
                                   Navigator.pushReplacement(
                                     context,
-                                    MaterialPageRoute(builder: (_) => const MainCamera(photoClicked: false)),
+                                    MaterialPageRoute(builder: (_) => MainCamera(photoClicked: false, initialCameraIndex: widget.cameraIndex)),
                                   );
                                 },
                                 icon: Icon(Icons.camera_alt, size: 25,),

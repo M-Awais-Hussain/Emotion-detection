@@ -163,7 +163,7 @@ class MoodChatScreenState extends State<MoodChatScreen> {
             "conversation_history": _getFilteredHistory(),
             "detected_emotion": emotion,
           }),
-        ).timeout(const Duration(seconds: 30));
+        ).timeout(const Duration(seconds: 5));
 
         if (response.statusCode == 200) {
           final data = jsonDecode(response.body);

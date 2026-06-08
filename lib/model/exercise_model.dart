@@ -298,7 +298,7 @@ final Map<String, List<Exercise>> exercise = {
   "disgust": [
     Exercise(
       title: "Cleansing Breath",
-      image: "assets/exercises/anxious/breathing.png",
+      image: "assets/exercises/angry/nadi_shodhana.png",
       description:
       "A refreshing breathing practice to help release feelings of aversion and restore emotional neutrality.",
       technique:
@@ -315,7 +315,7 @@ final Map<String, List<Exercise>> exercise = {
     ),
     Exercise(
       title: "Body Scan Meditation",
-      image: "assets/exercises/neutral/meditation.png",
+      image: "assets/exercises/angry/balasana.png",
       description:
       "A mindfulness practice to reconnect with the body in a neutral, non-judgmental way.",
       technique:

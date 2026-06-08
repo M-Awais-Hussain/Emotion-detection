@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:http/http.dart' as http;
 import 'package:camera/camera.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
-// import '../config/api_config.dart'; // Uncomment when using ApiConfig
+import '../config/api_config.dart';
 
 class EmotionApiService {
   // Mapping function to convert 7 model emotions to 5 app emotions
@@ -29,14 +29,7 @@ class EmotionApiService {
   }
 
   static Future<String> getEmotion(XFile image) async {
-    // Import API config
-    // Note: You may need to add: import '../config/api_config.dart';
-    // For now using direct URL - update to use ApiConfig in production
-    final apiUrl = const String.fromEnvironment(
-      'API_BASE_URL',
-      defaultValue: 'http://localhost:8000',
-    );
-    final ip = "$apiUrl/api/v1/predict";
+    final ip = ApiConfig.predictEmotionUrl;
 
     // Fallback to old API if new backend not available
     final fallbackUrl = "https://darshanvaru-emotion-eye-detector.hf.space/predict";

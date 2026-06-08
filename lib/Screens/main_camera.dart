@@ -13,8 +13,9 @@ import '../widgets/camera_help_dialog.dart';
 import '../widgets/emotion_overlay_widget.dart';
 
 class MainCamera extends StatefulWidget {
-  const MainCamera({super.key, this.photoClicked = false});
+  const MainCamera({super.key, this.photoClicked = false, this.initialCameraIndex = 0});
   final bool photoClicked;
+  final int initialCameraIndex;
 
   @override
   State<MainCamera> createState() => _MainCameraState();
@@ -28,7 +29,7 @@ class _MainCameraState extends State<MainCamera> with WidgetsBindingObserver {
   final RealtimeEmotionService _emotionService = RealtimeEmotionService();
 
   List<CameraDescription>? _cameras;
-  int _selectedCameraIndex = 0;
+  late int _selectedCameraIndex;
   FlashMode _flashMode = FlashMode.auto;
 
   XFile? _capturedImage;
@@ -44,6 +45,7 @@ class _MainCameraState extends State<MainCamera> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
+    _selectedCameraIndex = widget.initialCameraIndex;
     WidgetsBinding.instance.addObserver(this);
     debugPrint("[MainCamera] initState() called. photoClicked: ${widget.photoClicked}");
 
@@ -106,7 +108,6 @@ class _MainCameraState extends State<MainCamera> with WidgetsBindingObserver {
   }
 
   Future<void> _initializeCamera() async {
-    await Future.delayed(Duration(milliseconds: 300));
     debugPrint("[MainCamera] _initializeCamera() START. isCameraInitialized: $_isCameraInitialized");
 
     // disposing and reinitializing if already initialized
@@ -148,7 +149,6 @@ class _MainCameraState extends State<MainCamera> with WidgetsBindingObserver {
 
   // Method to dispose camera resources
   Future<void> _disposeCamera() async {
-    await Future.delayed(Duration(milliseconds: 2000));
     debugPrint("[MainCamera] _disposeCamera() called. isInitialized: $_isCameraInitialized");
     
     // Stop emotion detection before disposing camera
@@ -244,7 +244,6 @@ class _MainCameraState extends State<MainCamera> with WidgetsBindingObserver {
 
     // First dispose the current camera
     await _disposeCamera();
-    await Future.delayed(Duration(milliseconds: 500));
 
     try {
       _selectedCameraIndex = (_selectedCameraIndex + 1) % _cameras!.length;
@@ -315,6 +314,7 @@ class _MainCameraState extends State<MainCamera> with WidgetsBindingObserver {
         MaterialPageRoute(
           builder: (_) => ResultPage(
             imageFile: XFile(_capturedImage!.path),
+            cameraIndex: _selectedCameraIndex,
           ),
         ),
       ).then((_) {

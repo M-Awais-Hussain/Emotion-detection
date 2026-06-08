@@ -24,7 +24,7 @@ class ApiConfig {
           // For emulator, use 10.0.2.2
           // Default to local network IP for physical device
           // User can override with API_BASE_URL environment variable
-          return 'http://192.168.1.20:8000';
+          return 'http://10.0.2.2:8000';
         }
       } catch (e) {
         // Platform check might fail on some platforms, fall through to default

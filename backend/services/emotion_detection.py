@@ -248,10 +248,10 @@ class EmotionDetectionService:
             'happy': 'happy',
             'sad': 'sad',
             'neutral': 'neutral',
-            'disgusted': 'angry',
-            'disgust': 'angry',
-            'fear': 'anxious',
-            'surprise': 'happy'
+            'disgusted': 'disgust',
+            'disgust': 'disgust',
+            'fear': 'fear',
+            'surprise': 'surprise'
         }
         
         return mapping.get(emotion_lower, 'neutral')
