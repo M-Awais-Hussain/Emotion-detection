@@ -2,10 +2,12 @@ import 'package:emotioneye/Screens/home_page_carousel/dashboard_page.dart';
 import 'package:emotioneye/Screens/mood_improvement_dashboard.dart';
 import 'package:emotioneye/Screens/main_camera.dart';
 import 'package:flutter/material.dart';
+import '../config/app_info.dart';
 import '../theme/app_theme.dart';
 import '/Screens/about_app.dart';
 import '/Screens/guide.dart';
 import 'activities_screen.dart';
+import 'download_app_screen.dart';
 import 'exercises_screen.dart';
 import 'mood_chat_screen.dart';
 import 'study_performance_screen.dart';
@@ -292,6 +294,20 @@ class MainHomePageState extends State<MainHomePage> with SingleTickerProviderSta
                       );
                     },
                   ),
+                  _buildDrawerItem(
+                    icon: Icons.download_rounded,
+                    title: "Download App",
+                    iconColor: Colors.teal,
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DownloadAppScreen(),
+                        ),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
@@ -308,7 +324,7 @@ class MainHomePageState extends State<MainHomePage> with SingleTickerProviderSta
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'v1.0.0',
+                    'v${AppInfo.appVersion}',
                     style: TextStyle(
                       color: Colors.grey.shade600,
                       fontSize: 12,

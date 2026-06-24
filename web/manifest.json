@@ -1,13 +1,16 @@
 {
-    "name": "emotioneye",
-    "short_name": "emotioneye",
+    "name": "Emotion Eye",
+    "short_name": "EmotionEye",
+    "id": "/",
     "start_url": ".",
+    "scope": "/",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#FAFBFC",
+    "theme_color": "#001F54",
+    "description": "Detect, understand, and improve your emotional well-being using AI-powered emotion detection.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
+    "categories": ["health", "education", "lifestyle"],
     "icons": [
         {
             "src": "icons/Icon-192.png",

@@ -17,11 +17,25 @@ class _StudyPerformanceScreenState extends State<StudyPerformanceScreen> {
   final TextEditingController _hoursController = TextEditingController();
 
   String _selectedMood = 'happy';
-  double _productivity = 70;
+  double _productivity = 0;
 
   StudyTrackerService? _service;
   List<StudySession> _sessions = [];
   bool _isLoading = true;
+
+  // Mood weights for dynamic productivity calculation
+  static const Map<String, double> _moodWeights = {
+    'happy': 90,
+    'surprise': 80,
+    'neutral': 70,
+    'fear': 50,
+    'sad': 50,
+    'disgust': 40,
+    'angry': 30,
+  };
+
+  // Ideal study duration in hours
+  static const double _idealStudyHours = 8.0;
 
   // Computed insights
   late Map<String, _MoodInsight> _insights;
@@ -31,6 +45,8 @@ class _StudyPerformanceScreenState extends State<StudyPerformanceScreen> {
   void initState() {
     super.initState();
     _insights = {};
+    _hoursController.addListener(_onInputChanged);
+    _calculateProductivity();
     _initService();
   }
 
@@ -49,8 +65,30 @@ class _StudyPerformanceScreenState extends State<StudyPerformanceScreen> {
 
   @override
   void dispose() {
+    _hoursController.removeListener(_onInputChanged);
     _hoursController.dispose();
     super.dispose();
+  }
+
+  /// Recalculate productivity whenever study hours or mood changes.
+  void _onInputChanged() {
+    _calculateProductivity();
+  }
+
+  /// Dynamically calculate productivity from study hours and mood.
+  ///
+  /// Formula:
+  ///   hourScore = min((studyHours / idealHours) * 100, 100)
+  ///   moodScore = weight from _moodWeights
+  ///   productivity = (hourScore * 0.6) + (moodScore * 0.4)
+  void _calculateProductivity() {
+    final hours = double.tryParse(_hoursController.text.trim()) ?? 0;
+    final hourScore = (hours / _idealStudyHours * 100).clamp(0, 100).toDouble();
+    final moodScore = _moodWeights[_selectedMood] ?? 70;
+    final result = (hourScore * 0.6) + (moodScore * 0.4);
+    setState(() {
+      _productivity = result.roundToDouble();
+    });
   }
 
   Future<void> _saveEntry() async {
@@ -271,6 +309,7 @@ class _StudyPerformanceScreenState extends State<StudyPerformanceScreen> {
                   setState(() {
                     _selectedMood = value;
                   });
+                  _calculateProductivity();
                 },
               ),
               const SizedBox(height: AppTheme.spacingM),
@@ -307,17 +346,13 @@ class _StudyPerformanceScreenState extends State<StudyPerformanceScreen> {
               Row(
                 children: [
                   Expanded(
-                    child: Slider(
-                      value: _productivity,
-                      min: 0,
-                      max: 100,
-                      divisions: 20,
-                      label: '${_productivity.round()}%',
-                      onChanged: (value) {
-                        setState(() {
-                          _productivity = value;
-                        });
-                      },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(4),
+                      child: LinearProgressIndicator(
+                        value: _productivity / 100,
+                        minHeight: 12,
+                        backgroundColor: AppTheme.borderLight,
+                      ),
                     ),
                   ),
                   const SizedBox(width: AppTheme.spacingS),
