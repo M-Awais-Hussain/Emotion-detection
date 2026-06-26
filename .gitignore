@@ -120,3 +120,4 @@ __pycache__/
 Thumbs.db
 
 *.h5
+*.onnx
