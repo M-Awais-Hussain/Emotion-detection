@@ -12,7 +12,8 @@ dependencies:
   url_launcher: ^6.2.5
   confetti: ^0.7.0
   camera: ^0.10.6
-  image: ^4.2.0
+  image: ^4.5.4
+  onnxruntime: ^1.4.1
   lottie: ^3.1.2
   emailjs: ^4.0.0
   image_picker: ^1.1.2
@@ -24,6 +25,11 @@ dependencies:
   intl: 0.20.2
   awesome_notifications: ^0.10.1
   permission_handler: ^12.0.3
+  google_mlkit_face_detection: ^0.13.2
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  fl_chart: ^1.2.0
+  uuid: ^4.5.3
  
 
 
@@ -37,6 +43,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/emotion_model.onnx
+    - assets/labels.txt
     - assets/animation.json
     - assets/portrait.png
 
@@ -69,5 +77,5 @@ flutter:
     - assets/exercises/anxious/paschimottanasana.png
     - assets/exercises/anxious/utthita_trikonasana.png
     - assets/exercises/anxious/viparita_karani.png
-    - assets/releases/
+
 

@@ -230,29 +230,13 @@ class MoodChatScreenState extends State<MoodChatScreen> {
       return 'angry';
     }
 
-    // Disgust emotions
-    if (lowerMessage.contains('disgust') ||
-        lowerMessage.contains('disgusted') ||
-        lowerMessage.contains('contempt') ||
-        lowerMessage.contains('repulsed') ||
-        lowerMessage.contains('gross')) {
-      return 'disgust';
-    }
-    
-    // Fear emotions
-    if (lowerMessage.contains('anxious') || 
-        lowerMessage.contains('worried') || 
-        lowerMessage.contains('nervous') ||
-        lowerMessage.contains('anxiety') ||
-        lowerMessage.contains('fear') ||
-        lowerMessage.contains('afraid') ||
-        lowerMessage.contains('scared') ||
-        lowerMessage.contains('panic') ||
-        lowerMessage.contains('stressed') ||
-        lowerMessage.contains('stress') ||
-        lowerMessage.contains('overwhelmed') ||
-        lowerMessage.contains('tense')) {
-      return 'fear';
+    // Ahegao emotions
+    if (lowerMessage.contains('ahegao') ||
+        lowerMessage.contains('goofy') ||
+        lowerMessage.contains('silly') ||
+        lowerMessage.contains('funny') ||
+        lowerMessage.contains('playful')) {
+      return 'ahegao';
     }
     
     // Neutral
@@ -304,13 +288,7 @@ class MoodChatScreenState extends State<MoodChatScreen> {
       // Additional emotions
       "surprise": "Surprise! 😲 Your brain is learning and adapting. This unexpected moment can be an opportunity for growth. Embrace new experiences and see where they lead you. 💙",
       
-      "fear": "I understand you're feeling afraid or scared. 😨 Fear is a natural response that keeps us safe. Try grounding techniques: name 5 things you see, 4 you can touch, 3 you hear, 2 you smell, and 1 you taste. I'm here to help you feel more secure. 💙",
-      
-      "disgust": "I sense you're feeling disgusted or repulsed. 🤢 This feeling often signals something doesn't align with your values. Focus on what matters to you and shift your attention to something positive. I'm here to help. 💙",
-      
-      "contempt": "I notice you might be feeling contempt or disdain. 😏 This can create distance in relationships. Try practicing empathy - consider the other person's perspective. Everyone has their struggles. Let's work on understanding together. 💙",
-      
-      "stressed": "You're feeling stressed or overwhelmed. 😵 That's completely understandable. Let's prioritize what matters most right now. Take intentional breaks, practice deep breathing, and remember to be kind to yourself. I'm here to support you. 💙",
+      "ahegao": "You're showing a very playful and expressive side! 🤪 It's great to let loose and be a bit goofy sometimes. I'm here to match your fun energy! 💙",
     };
     
     // Return emotion-specific response or neutral
@@ -327,16 +305,8 @@ class MoodChatScreenState extends State<MoodChatScreen> {
     final emotionLower = emotion.toLowerCase();
     
     // Direct matches
-    if (['happy', 'sad', 'angry', 'fear', 'disgust', 'surprise', 'neutral'].contains(emotionLower)) {
+    if (['ahegao', 'happy', 'sad', 'angry', 'surprise', 'neutral'].contains(emotionLower)) {
       return emotionLower;
-    }
-    
-    // Map related emotions
-    if (emotionLower == 'contempt') {
-      return 'disgust';
-    }
-    if (emotionLower == 'anxious' || emotionLower == 'stressed') {
-      return 'fear';
     }
     
     // Default to neutral for unknown emotions

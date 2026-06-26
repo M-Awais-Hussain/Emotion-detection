@@ -7,10 +7,8 @@ import 'package:image_picker/image_picker.dart';
 
 import '../services/camera_service.dart';
 import '../services/image_processor_service.dart';
-import '../services/realtime_emotion_service.dart';
 import '../widgets/photo_clicked_widget.dart';
 import '../widgets/camera_help_dialog.dart';
-import '../widgets/emotion_overlay_widget.dart';
 
 class MainCamera extends StatefulWidget {
   const MainCamera({super.key, this.photoClicked = false, this.initialCameraIndex = 0});
@@ -26,7 +24,6 @@ class _MainCameraState extends State<MainCamera> with WidgetsBindingObserver {
   // bool textFieldVisibility = false;
   // final TextEditingController _controller  = TextEditingController();
   final CameraService _cameraService = CameraService();
-  final RealtimeEmotionService _emotionService = RealtimeEmotionService();
 
   List<CameraDescription>? _cameras;
   late int _selectedCameraIndex;
@@ -36,11 +33,6 @@ class _MainCameraState extends State<MainCamera> with WidgetsBindingObserver {
   bool _isProcessingImage = false;
   bool photoClicked = false;
   bool _isCameraInitialized = false;
-  
-  // Real-time emotion detection variables
-  String _currentEmotion = 'detecting...';
-  bool _isEmotionDetecting = false;
-  bool _showEmotionOverlay = true;
 
   @override
   void initState() {
@@ -48,23 +40,6 @@ class _MainCameraState extends State<MainCamera> with WidgetsBindingObserver {
     _selectedCameraIndex = widget.initialCameraIndex;
     WidgetsBinding.instance.addObserver(this);
     debugPrint("[MainCamera] initState() called. photoClicked: ${widget.photoClicked}");
-
-    // Setup emotion detection callbacks
-    _emotionService.onEmotionDetected = (emotion) {
-      if (mounted) {
-        setState(() {
-          _currentEmotion = emotion;
-        });
-      }
-    };
-
-    _emotionService.onDetectionStatusChanged = (isDetecting) {
-      if (mounted) {
-        setState(() {
-          _isEmotionDetecting = isDetecting;
-        });
-      }
-    };
 
     if (!widget.photoClicked) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -96,15 +71,11 @@ class _MainCameraState extends State<MainCamera> with WidgetsBindingObserver {
   }
 
   @override
-  void dispose() async{
-    super.dispose();
+  void dispose() {
     WidgetsBinding.instance.removeObserver(this);
-    _emotionService.dispose();
     debugPrint("----------------------In dispose function");
     _disposeCamera();
-
-    //delay for preventing any race condition
-    await Future.delayed(Duration(milliseconds: 500));
+    super.dispose();
   }
 
   Future<void> _initializeCamera() async {
@@ -132,9 +103,6 @@ class _MainCameraState extends State<MainCamera> with WidgetsBindingObserver {
           _isCameraInitialized = true;
         });
         
-        // Start real-time emotion detection (works on web too)
-        _emotionService.startDetection(_cameraService.cameraController);
-        
         debugPrint("[MainCamera] _isCameraInitialized set to true.");
       } else {
         _showSnackBar("No cameras available", isError: true);
@@ -151,13 +119,11 @@ class _MainCameraState extends State<MainCamera> with WidgetsBindingObserver {
   Future<void> _disposeCamera() async {
     debugPrint("[MainCamera] _disposeCamera() called. isInitialized: $_isCameraInitialized");
     
-    // Stop emotion detection before disposing camera
-    _emotionService.stopDetection();
-    
     if (_isCameraInitialized) {
-      setState(() {
-        _isCameraInitialized = false;
-      });
+      _isCameraInitialized = false;
+      if (mounted) {
+        setState(() {});
+      }
       await _cameraService.dispose();
       debugPrint("[MainCamera] Camera disposed and _isCameraInitialized set to false.");
     }
@@ -351,13 +317,6 @@ class _MainCameraState extends State<MainCamera> with WidgetsBindingObserver {
     }
   }
 
-  void _toggleEmotionOverlay() {
-    setState(() {
-      _showEmotionOverlay = !_showEmotionOverlay;
-    });
-    debugPrint("[MainCamera] Emotion overlay toggled: $_showEmotionOverlay");
-  }
-
   void _showSnackBar(String message, {bool isError = false}) {
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
@@ -536,16 +495,6 @@ class _MainCameraState extends State<MainCamera> with WidgetsBindingObserver {
           color: Colors.white, // changes the back button color
         ),
         actions: [
-          // Emotion overlay toggle
-          if (_isCameraInitialized && !photoClicked)
-            IconButton(
-              icon: Icon(
-                _showEmotionOverlay ? Icons.visibility : Icons.visibility_off,
-                color: Colors.white,
-              ),
-              onPressed: _isProcessingImage ? null : _toggleEmotionOverlay,
-              tooltip: _showEmotionOverlay ? 'Hide emotion detection' : 'Show emotion detection',
-            ),
           if (_isCameraInitialized && _selectedCameraIndex == 0)
             IconButton(
               icon: Icon(_getFlashIcon(), color: Colors.white),
@@ -629,13 +578,6 @@ class _MainCameraState extends State<MainCamera> with WidgetsBindingObserver {
               ),
             ],
           ),
-          // Emotion overlay for real-time detection
-          if (_isCameraInitialized && !photoClicked)
-            EmotionOverlayWidget(
-              emotion: _currentEmotion,
-              isDetecting: _isEmotionDetecting,
-              showOverlay: _showEmotionOverlay,
-            ),
         ],
       ),
     );

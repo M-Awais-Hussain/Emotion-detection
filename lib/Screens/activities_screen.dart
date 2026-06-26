@@ -4,7 +4,7 @@ import 'dart:ui';
 import '../Widgets/MoodBoosterWidgets/angry/anger_journal_widget.dart';
 import '../Widgets/MoodBoosterWidgets/angry/breathing_exercise_widget.dart';
 import '../Widgets/MoodBoosterWidgets/angry/physical_activities_screen.dart';
-import '../Widgets/MoodBoosterWidgets/fear/grounding_exercise_widget.dart';
+
 import '../Widgets/MoodBoosterWidgets/neutral/to_do_list.dart';
 import '../Widgets/MoodBoosterWidgets/neutral/what_went_well.dart';
 import '../Widgets/MoodBoosterWidgets/sad/gratitude_journal_widget.dart';
@@ -74,20 +74,18 @@ class ActivitiesPage extends StatelessWidget {
         'type': 'screen'
       },
     ],
-    'Fear': [
+    'Ahegao': [
       {
-        'name': 'Grounding Exercise',
-        'icon': Icons.spa,
-        'screen': 'GroundingExerciseWidget',
-        'type': 'screen'
+        'name': 'Take a Selfie',
+        'icon': Icons.camera_alt,
+        'screen': 'showHappyMusicPlaylistPopup', // Placeholder
+        'type': 'popup'
       },
-    ],
-    'Disgust': [
       {
-        'name': 'Breathing Exercise',
-        'icon': Icons.air,
-        'screen': 'BreathingExerciseWidget',
-        'type': 'screen'
+        'name': 'Fun Playlist',
+        'icon': Icons.music_note,
+        'screen': 'showHappyYoutubePlaylistPopup', // Placeholder
+        'type': 'popup'
       },
     ],
     'Surprise': [
@@ -95,6 +93,20 @@ class ActivitiesPage extends StatelessWidget {
         'name': 'To-Do List',
         'icon': Icons.checklist,
         'screen': 'ToDoList',
+        'type': 'screen'
+      },
+    ],
+    'Happy': [
+      {
+        'name': 'Happy Playlist',
+        'icon': Icons.music_note,
+        'screen': 'showHappyMusicPlaylistPopup',
+        'type': 'popup'
+      },
+      {
+        'name': 'What Went Well',
+        'icon': Icons.emoji_emotions,
+        'screen': 'WhatWentWellActivity',
         'type': 'screen'
       },
     ],
@@ -408,16 +420,7 @@ class ActivitiesPage extends StatelessWidget {
             ),
           ),
         );
-      case 'GroundingExerciseWidget':
-        return Scaffold(
-          appBar: AppBar(title: Text("Gratitude Journal")),
-          body: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: SingleChildScrollView(
-              child: GroundingExerciseWidget(),
-            ),
-          ),
-        );
+
       default:
         return null;
     }
@@ -427,10 +430,8 @@ class ActivitiesPage extends StatelessWidget {
     switch (emotion.toLowerCase()) {
       case 'angry':
         return Icons.sentiment_very_dissatisfied;
-      case 'fear':
-        return Icons.sentiment_dissatisfied;
-      case 'disgust':
-        return Icons.sick;
+      case 'ahegao':
+        return Icons.face_retouching_natural;
       case 'surprise':
         return Icons.sentiment_very_satisfied;
       case 'neutral':

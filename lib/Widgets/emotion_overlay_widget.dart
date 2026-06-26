@@ -34,15 +34,10 @@ class EmotionOverlayWidget extends StatelessWidget {
       'color': Colors.blueGrey,
       'backgroundColor': Color(0xFFF5F7FA),
     },
-    'fear': {
-      'emoji': '😨',
-      'color': Colors.deepPurple,
-      'backgroundColor': Color(0xFFEDE7F6),
-    },
-    'disgust': {
-      'emoji': '🤢',
-      'color': Colors.green,
-      'backgroundColor': Color(0xFFE8F5E9),
+    'ahegao': {
+      'emoji': '🤪',
+      'color': Colors.pink,
+      'backgroundColor': Color(0xFFFCE4EC),
     },
     'surprise': {
       'emoji': '😲',

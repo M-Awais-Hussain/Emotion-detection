@@ -11,6 +11,8 @@ import 'download_app_screen.dart';
 import 'exercises_screen.dart';
 import 'mood_chat_screen.dart';
 import 'study_performance_screen.dart';
+import 'productivity_analysis_screen.dart';
+import '../productivity/screens/productivity_dashboard.dart';
 
 class MainHomePage extends StatefulWidget {
   final int pageNumber;
@@ -252,6 +254,34 @@ class MainHomePageState extends State<MainHomePage> with SingleTickerProviderSta
                         context,
                         MaterialPageRoute(
                           builder: (context) => const StudyPerformanceScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                  _buildDrawerItem(
+                    icon: Icons.trending_up,
+                    title: "Productivity Analysis",
+                    iconColor: Colors.amber.shade700,
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ProductivityAnalysisScreen(),
+                        ),
+                      );
+                    },
+                  ),
+                  _buildDrawerItem(
+                    icon: Icons.dashboard_customize_rounded,
+                    title: "Productivity Module",
+                    iconColor: Colors.blue,
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ProductivityDashboard(),
                         ),
                       );
                     },

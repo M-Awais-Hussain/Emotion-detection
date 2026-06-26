@@ -254,82 +254,24 @@ final Map<String, List<Exercise>> exercise = {
     ),
   ],
 
-  // ------------------- FEAR -------------------
-  "fear": [
+  // ------------------- AHEGAO -------------------
+  "ahegao": [
     Exercise(
-      title: "Grounding Breathing",
-      image: "assets/exercises/anxious/breathing.png",
-      description:
-      "A calming breathing technique to activate the parasympathetic nervous system and reduce feelings of panic.",
-      technique:
-      "1. Find a comfortable, safe space to sit or lie down.\n"
-          "2. Inhale deeply through your nose for a count of 4.\n"
-          "3. Hold your breath for a count of 4.\n"
-          "4. Exhale slowly through your mouth for a count of 6.\n"
-          "5. Repeat this cycle 5–10 times until you feel grounded.",
-      advantages:
-      "• Lowers heart rate and blood pressure.\n"
-          "• Reduces acute feelings of fear or panic.\n"
-          "• Restores a sense of control and calm.",
-      history:
-      "Controlled breathing exercises have been used for centuries across various traditions to manage stress and fear.",
-    ),
-    Exercise(
-      title: "Mindful Observation",
+      title: "Playful Expressions",
       image: "assets/exercises/neutral/meditation.png",
       description:
-      "A technique to shift focus away from fearful thoughts by engaging with the present environment.",
+      "A fun exercise to embrace your goofy side and loosen up facial muscles.",
       technique:
-      "1. Sit quietly and look around your environment.\n"
-          "2. Name 5 things you can see.\n"
-          "3. Name 4 things you can physically feel.\n"
-          "4. Name 3 things you can hear.\n"
-          "5. Name 2 things you can smell, and 1 thing you can taste.",
+      "1. Stand in front of a mirror.\n"
+          "2. Try making 5 completely different funny faces.\n"
+          "3. Laugh out loud at your own silliness.\n"
+          "4. Take a deep breath and smile.",
       advantages:
-      "• Interrupts fearful rumination.\n"
-          "• Brings the mind back to the present moment.\n"
-          "• Creates a mental pause to process emotions.",
+      "• Relieves facial tension and stress.\n"
+          "• Instantly boosts mood through natural laughter.\n"
+          "• Encourages self-acceptance and playfulness.",
       history:
-      "The 5-4-3-2-1 technique is a well-established cognitive behavioral tool for grounding during acute anxiety or fear.",
-    ),
-  ],
-
-  // ------------------- DISGUST -------------------
-  "disgust": [
-    Exercise(
-      title: "Cleansing Breath",
-      image: "assets/exercises/angry/nadi_shodhana.png",
-      description:
-      "A refreshing breathing practice to help release feelings of aversion and restore emotional neutrality.",
-      technique:
-      "1. Sit comfortably with a straight spine.\n"
-          "2. Take a deep, slow breath in through your nose, imagining drawing in clean, fresh energy.\n"
-          "3. Exhale forcefully through your mouth, visualizing the expulsion of negative feelings.\n"
-          "4. Repeat 5–8 times, focusing on the cleansing sensation.",
-      advantages:
-      "• Helps clear lingering negative emotions.\n"
-          "• Resets the nervous system.\n"
-          "• Promotes a feeling of internal purity and calm.",
-      history:
-      "Various 'cleansing breath' techniques are used in yoga and mindfulness to release stagnant energy and emotions.",
-    ),
-    Exercise(
-      title: "Body Scan Meditation",
-      image: "assets/exercises/angry/balasana.png",
-      description:
-      "A mindfulness practice to reconnect with the body in a neutral, non-judgmental way.",
-      technique:
-      "1. Lie down on your back in a comfortable position.\n"
-          "2. Close your eyes and bring attention to your toes.\n"
-          "3. Slowly move your focus up through your legs, torso, arms, and head.\n"
-          "4. Notice any sensations without judgment, simply acknowledging them.\n"
-          "5. Practice for 10–15 minutes.",
-      advantages:
-      "• Cultivates self-compassion and acceptance.\n"
-          "• Reduces physical tension associated with aversion.\n"
-          "• Grounds the mind in physical reality.",
-      history:
-      "Body scanning is a core practice in Mindfulness-Based Stress Reduction (MBSR) programs.",
+      "A modern playful activity designed to embrace silliness, joy, and the lighter side of life.",
     ),
   ],
 

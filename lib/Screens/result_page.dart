@@ -49,25 +49,10 @@ class _ResultPageState extends State<ResultPage> {
       'color': Colors.orange.shade400, // Bright orange for surprise/shock
       'message': 'Your brain is learning! Embrace new experiences.'
     },
-    'fear': {
-      'emoji': '😨',
-      'color': Colors.purple.shade400, // Dark purple for fear/anxiety
-      'message': 'Ground yourself: name 5 things you see, 4 you touch.'
-    },
-    'disgust': {
-      'emoji': '🤢',
-      'color': Colors.green.shade400, // Sickly green for disgust
-      'message': 'Focus on your values. Shift to something positive.'
-    },
-    'contempt': {
-      'emoji': '😏',
-      'color': Colors.brown.shade400, // Earthy brown for disdain
-      'message': 'Practice empathy. Everyone has their struggles.'
-    },
-    'stressed': {
-      'emoji': '😵',
-      'color': Colors.deepOrange.shade400, // Intense orange-red for stress
-      'message': 'Prioritize what matters. Take intentional breaks.'
+    'ahegao': {
+      'emoji': '🤪',
+      'color': Colors.pink.shade400, // Pink for ahegao
+      'message': 'Having fun! Share your goofy side.'
     },
     'detecting...': {
       'emoji': '🔍',
@@ -342,42 +327,7 @@ class _ResultPageState extends State<ResultPage> {
                           )
                       ],
                     ),
-                    SizedBox(height: 10),
-                    TextButton.icon(
-                      onPressed: isLoading
-                          ? null
-                          : () async {
-                        // Get the image path from the widget
-                        final String imagePath = widget.imageFile.path;
 
-                        // Create a personalized message with the detected mood
-                        final String emotionText = "I'm feeling ${mood[0].toUpperCase() + mood.substring(1)} today! ${emotionData[mood.toLowerCase()]?['emoji'] ?? ''}";
-
-                        // Create a list of XFiles for sharing
-                        final List<XFile> files = [XFile(imagePath)];
-
-                        // Share both text and image
-                        try {
-                          await Share.shareXFiles(
-                            files,
-                            text: emotionText,
-                            subject: 'My Current Mood',
-                          );
-                        } catch (e) {
-                          debugPrint('----- [ResultPage] Error sharing: $e');
-                          // Show a snackbar or dialog to inform the user
-                          if (!context.mounted) return;
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Could not share. Please try again.')                            ),
-                          );
-                        }
-                      },
-                      icon: Icon(Icons.share),
-                      label: Text("Share My Mood"),
-                      style: TextButton.styleFrom(
-                        foregroundColor: isLoading ? Colors.grey : Colors.grey.shade700,
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -440,26 +390,9 @@ class _ResultPageState extends State<ResultPage> {
       case 'neutral':
         return "Emotional neutrality can be a sign of psychological balance and present-moment awareness. This is an excellent time for reflection, planning, or engaging in mindfulness practices. Neutral states often provide clarity for decision-making and self-assessment.";
 
-      case 'fear':
-        return "Fear activates your protective systems. Ground yourself using the 5-4-3-2-1 technique: name 5 things you see, 4 you can touch, 3 you hear, 2 you smell, 1 you taste. Challenge catastrophic thoughts by examining evidence. Remember: anxiety lies, but courage grows through facing fears gradually.";
+      case 'ahegao':
+        return "You're showing a very expressive and fun side! Embrace your playful energy, maybe take some fun selfies, watch some anime, or listen to a fun playlist. Letting loose is a great way to relieve tension!";
 
-      case 'disgust':
-        return "Disgust often reflects violated values or boundaries. Acknowledge this feeling without judgment, then redirect attention to your personal values and what aligns with your authentic self. Practice cognitive reframing by identifying one small positive aspect in your current situation.";
-
-      case 'contempt':
-        return "Contempt can create emotional distance and relationship damage. This feeling often masks hurt or unmet expectations. Practice perspective-taking: consider the other person's context and struggles. Focus on common humanity - we all have flaws, fears, and difficult moments.";
-
-      case 'stressed':
-        return "Stress signals your need for balance and self-care. Prioritize what truly matters and practice saying no to non-essential demands. Try the RAIN technique: Recognize what's happening, Allow the experience, Investigate with kindness, Non-attachment to the outcome. Consider if this stress is within your control.";
-
-      case 'overwhelmed':
-        return "Feeling overwhelmed indicates you're carrying too much at once. Break tasks into smaller, manageable steps. Practice the 'one thing at a time' principle. Take intentional breaks and remember: you don't have to solve everything today. Progress over perfection.";
-
-      case 'lonely':
-        return "Loneliness is a signal for connection, not a character flaw. Reach out to one person today, even briefly. Practice self-companionship through kind self-talk. Consider joining activities aligned with your interests. Remember: quality connections matter more than quantity.";
-
-      case 'excited':
-        return "Excitement is positive arousal that enhances performance and memory. Channel this energy productively while staying grounded. Share your enthusiasm with others - positive emotions are contagious and strengthen relationships. Use this motivation to take meaningful action toward your goals.";
 
       case 'error':
         return "Technical hiccups happen! This moment of uncertainty is actually an opportunity to practice patience and adaptability - key skills for emotional resilience. Take a deep breath and try again when you're ready.";

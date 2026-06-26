@@ -5,12 +5,34 @@ import 'Screens/main_home_page.dart';
 import 'Services/app_animations.dart';
 import 'Services/notification_service.dart';
 import 'Services/streak_manager.dart';
+import 'Services/emotion_service.dart';
+
+import 'package:hive_flutter/hive_flutter.dart';
+import 'productivity/models/productivity_models.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   // Ensure Flutter bindings are initialized
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Load emotion model in the background so it doesn't block the splash screen
+  loadEmotionModel().catchError((e) {
+    debugPrint("Failed to load ONNX model: $e");
+  });
+
+  // Initialize Hive
+  await Hive.initFlutter();
+  Hive.registerAdapter(ProductivityTaskAdapter());
+  Hive.registerAdapter(ProductivityGoalAdapter());
+  Hive.registerAdapter(ProductivityHabitAdapter());
+  Hive.registerAdapter(PomodoroSessionAdapter());
+
+  // Open Hive boxes for Productivity Module
+  await Hive.openBox<ProductivityTask>('tasks');
+  await Hive.openBox<ProductivityGoal>('goals');
+  await Hive.openBox<ProductivityHabit>('habits');
+  await Hive.openBox<PomodoroSession>('pomodoro_sessions');
 
   // Initialize Awesome Notifications with BOTH channels
   await AwesomeNotifications().initialize(

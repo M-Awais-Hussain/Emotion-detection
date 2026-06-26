@@ -13,8 +13,7 @@ class AppTheme {
   static const Color happyColor = Color(0xFFFFB74D); // Warm orange
   static const Color sadColor = Color(0xFF64B5F6); // Soft blue
   static const Color angryColor = Color(0xFFE57373); // Soft red
-  static const Color fearColor = Color(0xFF7E57C2); // Deep purple
-  static const Color disgustColor = Color(0xFF66BB6A); // Soft green
+  static const Color ahegaoColor = Color(0xFFF06292); // Pink
   static const Color surpriseColor = Color(0xFFEC407A); // Pink/Magenta
   static const Color neutralColor = Color(0xFF90A4AE); // Blue grey
 
@@ -188,15 +187,9 @@ class AppTheme {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         );
-      case 'fear':
+      case 'ahegao':
         return const LinearGradient(
-          colors: [Color(0xFFEDE7F6), Color(0xFFD1C4E9)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        );
-      case 'disgust':
-        return const LinearGradient(
-          colors: [Color(0xFFE8F5E9), Color(0xFFC8E6C9)],
+          colors: [Color(0xFFFCE4EC), Color(0xFFF8BBD0)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         );
@@ -226,10 +219,8 @@ class AppTheme {
         return sadColor;
       case 'angry':
         return angryColor;
-      case 'fear':
-        return fearColor;
-      case 'disgust':
-        return disgustColor;
+      case 'ahegao':
+        return ahegaoColor;
       case 'surprise':
         return surpriseColor;
       case 'neutral':

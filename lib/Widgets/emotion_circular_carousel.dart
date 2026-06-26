@@ -16,12 +16,11 @@ class EmotionCircularCarouselState extends State<EmotionCircularCarousel> with T
     const Text('😞', style: TextStyle(fontSize: 35)),
     const Text('😄', style: TextStyle(fontSize: 35)),
     const Text('😠', style: TextStyle(fontSize: 35)),
-    const Text('😨', style: TextStyle(fontSize: 35)),
-    const Text('🤢', style: TextStyle(fontSize: 35)),
+    const Text('🤪', style: TextStyle(fontSize: 35)),
     const Text('😲', style: TextStyle(fontSize: 35)),
   ];
 
-  final List<String> emotionLabels = ["Neutral", "Sad", "Happy", "Angry", "Fear", "Disgust", "Surprise"];
+  final List<String> emotionLabels = ["Neutral", "Sad", "Happy", "Angry", "Ahegao", "Surprise"];
 
   double rotation = 0.0; // current rotation (radians)
   late final double spacing; // angle step between items
@@ -40,9 +39,8 @@ class EmotionCircularCarouselState extends State<EmotionCircularCarousel> with T
     1: const Color(0xFFE3F2FD), // Sad - Light blue
     2: const Color(0xFFFFF8E1), // Happy - Light yellow
     3: const Color(0xFFFFEBEE), // Angry - Light red
-    4: const Color(0xFFEDE7F6), // Fear - Light deep purple
-    5: const Color(0xFFE8F5E9), // Disgust - Light green
-    6: const Color(0xFFFCE4EC), // Surprise - Light pink
+    4: const Color(0xFFFCE4EC), // Ahegao - Light pink
+    5: const Color(0xFFFCE4EC), // Surprise - Light pink
   };
 
   @override
@@ -236,9 +234,8 @@ class EmotionCircularCarouselState extends State<EmotionCircularCarousel> with T
       case 1: return Colors.blue.shade800;     // Sad
       case 2: return Colors.orange.shade800;   // Happy
       case 3: return Colors.red.shade800;      // Angry
-      case 4: return Colors.deepPurple.shade800; // Fear
-      case 5: return Colors.green.shade800;    // Disgust
-      case 6: return Colors.pink.shade800;     // Surprise
+      case 4: return Colors.pink.shade800;     // Ahegao
+      case 5: return Colors.pink.shade800;     // Surprise
       default: return Colors.black87;
     }
   }
@@ -269,19 +266,13 @@ class EmotionCircularCarouselState extends State<EmotionCircularCarousel> with T
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         );
-      case 4: // Fear
+      case 4: // Ahegao
         return LinearGradient(
-          colors: [Colors.deepPurple.shade300, Colors.deepPurple.shade600],
+          colors: [Colors.pink.shade300, Colors.pink.shade600],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         );
-      case 5: // Disgust
-        return LinearGradient(
-          colors: [Colors.green.shade300, Colors.green.shade600],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        );
-      case 6: // Surprise
+      case 5: // Surprise
         return LinearGradient(
           colors: [Colors.pink.shade300, Colors.pink.shade600],
           begin: Alignment.topLeft,
@@ -300,9 +291,8 @@ class EmotionCircularCarouselState extends State<EmotionCircularCarousel> with T
       case 1: return Colors.blue.withValues(alpha: 0.4);
       case 2: return Colors.orange.withValues(alpha: 0.4);
       case 3: return Colors.red.withValues(alpha: 0.4);
-      case 4: return Colors.deepPurple.withValues(alpha: 0.4);
-      case 5: return Colors.green.withValues(alpha: 0.4);
-      case 6: return Colors.pink.withValues(alpha: 0.4);
+      case 4: return Colors.pink.withValues(alpha: 0.4);
+      case 5: return Colors.pink.withValues(alpha: 0.4);
       default: return Colors.grey.withValues(alpha: 0.4);
     }
   }
@@ -313,9 +303,8 @@ class EmotionCircularCarouselState extends State<EmotionCircularCarousel> with T
       case 1: return Colors.blue.shade600;
       case 2: return Colors.orange.shade600;
       case 3: return Colors.red.shade600;
-      case 4: return Colors.deepPurple.shade600;
-      case 5: return Colors.green.shade600;
-      case 6: return Colors.pink.shade600;
+      case 4: return Colors.pink.shade600;
+      case 5: return Colors.pink.shade600;
       default: return Colors.grey.shade600;
     }
   }

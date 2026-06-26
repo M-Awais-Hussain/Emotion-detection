@@ -11,7 +11,7 @@ import '../widgets/MoodBoosterWidgets/angry/breathing_exercise_widget.dart';
 import '../widgets/MoodBoosterWidgets/angry/physical_activities_screen.dart';
 import '../widgets/MoodBoosterWidgets/neutral/what_went_well.dart';
 import '../widgets/MoodBoosterWidgets/sad/gratitude_journal_widget.dart';
-import '../widgets/MoodBoosterWidgets/fear/grounding_exercise_widget.dart';
+
 import '../widgets/MoodBoosterWidgets/mood_response_widget.dart';
 
 /// Main dashboard
@@ -56,20 +56,9 @@ class MoodImprovementDashboardState extends State<MoodImprovementDashboard> with
       onError: Colors.white,
       brightness: Brightness.light,
     ),
-    'fear': ColorScheme(
-      primary: Color(0xFF7E57C2), // Deep purple
-      secondary: Color(0xFFD1C4E9),
-      surface: Colors.white,
-      error: Colors.red,
-      onPrimary: Colors.white,
-      onSecondary: Colors.black,
-      onSurface: Colors.black,
-      onError: Colors.white,
-      brightness: Brightness.light,
-    ),
-    'disgust': ColorScheme(
-      primary: Color(0xFF66BB6A), // Green
-      secondary: Color(0xFFC8E6C9),
+    'ahegao': ColorScheme(
+      primary: Color(0xFFE91E63), // Pink
+      secondary: Color(0xFFF8BBD0),
       surface: Colors.white,
       error: Colors.red,
       onPrimary: Colors.white,
@@ -177,8 +166,7 @@ class MoodImprovementDashboardState extends State<MoodImprovementDashboard> with
                     _MoodChip(mood: 'neutral', currentMood: _currentMood, onChanged: _changeMood),
                     _MoodChip(mood: 'happy', currentMood: _currentMood, onChanged: _changeMood),
                     _MoodChip(mood: 'angry', currentMood: _currentMood, onChanged: _changeMood),
-                    _MoodChip(mood: 'fear', currentMood: _currentMood, onChanged: _changeMood),
-                    _MoodChip(mood: 'disgust', currentMood: _currentMood, onChanged: _changeMood),
+                    _MoodChip(mood: 'ahegao', currentMood: _currentMood, onChanged: _changeMood),
                     _MoodChip(mood: 'surprise', currentMood: _currentMood, onChanged: _changeMood),
                   ],
                 ),
@@ -294,29 +282,22 @@ class MoodImprovementDashboardState extends State<MoodImprovementDashboard> with
             onTap: () => showAngerExercisesDialog(context)
           ),
         ]
-        else if (_currentMood == 'fear') ...[
+        else if (_currentMood == 'ahegao') ...[
           _ActivityCard(
             colorScheme: colorScheme,
-            icon: Icons.air,
-            title: 'Grounding Breathing',
-            description: 'Regulate emotions through breathing.',
-            onTap: () => _tabController.animateTo(1),
+            icon: Icons.camera_alt,
+            title: 'Take a Selfie',
+            description: 'Capture your fun goofy moment!',
+            onTap: () {
+              NativeCameraLauncher.openNativeCamera();
+            },
           ),
           _ActivityCard(
             colorScheme: colorScheme,
-            icon: Icons.anchor,
-            title: 'Mindful Observation',
-            description: 'Center yourself in the moment.',
-            onTap: () => _tabController.animateTo(2),
-          ),
-        ]
-        else if (_currentMood == 'disgust') ...[
-          _ActivityCard(
-            colorScheme: colorScheme,
-            icon: Icons.air,
-            title: 'Cleansing Breath',
-            description: 'Refresh and release negative feelings.',
-            onTap: () => _tabController.animateTo(1),
+            icon: Icons.music_note,
+            title: 'Fun Playlist',
+            description: 'Listen to upbeat and fun songs.',
+            onTap: () => showHappyMusicPlaylistPopup(context)
           ),
         ]
         else if (_currentMood == 'surprise') ...[
@@ -383,10 +364,8 @@ class MoodImprovementDashboardState extends State<MoodImprovementDashboard> with
           ToDoList()
         else if (_currentMood == 'happy')
           LetterYourself()
-        else if (_currentMood == 'fear')
-          BreathingExerciseWidget(colorScheme: colorScheme)
-        else if (_currentMood == 'disgust')
-          BreathingExerciseWidget(colorScheme: colorScheme)
+        else if (_currentMood == 'ahegao')
+          ToDoList()
         else if (_currentMood == 'surprise')
           ToDoList(),
       ],
@@ -407,9 +386,7 @@ class MoodImprovementDashboardState extends State<MoodImprovementDashboard> with
             WhatWentWellActivity()
         else if (_currentMood == 'happy')
           LetterYourself()
-        else if (_currentMood == 'fear')
-          GroundingExerciseWidget()
-        else if (_currentMood == 'disgust')
+        else if (_currentMood == 'ahegao')
           WhatWentWellActivity()
         else if (_currentMood == 'surprise')
           WhatWentWellActivity(),
@@ -456,8 +433,7 @@ class _MoodChip extends StatelessWidget {
     switch (mood) {
       case 'sad': return Colors.blue;
       case 'angry': return Colors.red;
-      case 'fear': return Colors.deepPurple;
-      case 'disgust': return Colors.green;
+      case 'ahegao': return Colors.pink;
       case 'surprise': return Colors.pink;
       case 'happy': return Colors.orange;
       default: return Colors.grey;
